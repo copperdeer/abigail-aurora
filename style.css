@@ -1,12 +1,12 @@
 :root {
   --primary: #fff;
-  --bg-color: #635145;
-  --bg-envelope-color: #875a47;
-  --envelope-tab: #c98c77;
-  --envelope-cover: #c0836e;
+  --bg-color: #e9e0d5;
+  --bg-envelope-color: #7d503b;
+  --envelope-tab: #7d503b;
+  --envelope-cover: #e0af8f;
   --shadow-color: rgba(0, 0, 0, 0.2);
   --txt-color: #444;
-  --heart-color: rgb(135, 63, 69);
+  --heart-color: #c9696c;
 }
 
 body {
