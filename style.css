@@ -1,0 +1,253 @@
+:root {
+  --primary: #fff;
+  --bg-color: rgba(75, 39, 25, 1);
+  --bg-envelope-color: #875a47;
+  --envelope-tab: #c98c77;
+  --envelope-cover: #c0836e;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --txt-color: #444;
+  --heart-color: rgb(135, 63, 69);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+}
+
+.player-container {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.player-container iframe {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin: 0 auto;
+}
+
+.container {
+  margin-top: 20px;
+  display: grid;
+  place-items: center;
+}
+
+.envelope-wrapper {
+  background: var(--bg-envelope-color);
+  box-shadow: 0 0 40px var(--shadow-color);
+  position: relative;
+  margin-top: 30px;
+}
+
+.envelope-wrapper > .envelope {
+  position: relative;
+  width: 400px;
+  height: 300px;
+}
+
+.envelope-wrapper > .envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  border-top: 180px solid var(--envelope-tab);
+  border-right: 200px solid transparent;
+  border-left: 200px solid transparent;
+  transform-origin: top;
+  transition: all 0.5s ease-in-out 0.7s;
+}
+
+.envelope-wrapper > .envelope::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 0px;
+  height: 0px;
+  border-top: 180px solid transparent;
+  border-right: 200px solid var(--envelope-cover);
+  border-bottom: 120px solid var(--envelope-cover);
+  border-left: 200px solid var(--envelope-cover);
+}
+
+.envelope > .letter {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 80%;
+  background: var(--primary);
+  text-align: center;
+  transition: all 1s ease-in-out;
+  box-shadow: 0 0 5px var(--shadow-color);
+  padding: 20px 10px;
+  z-index: 1;
+}
+
+.envelope > .letter > .text {
+  font-family: "Times New Roman", Times, serif;
+  color: var(--txt-color);
+  text-align: center;
+  font-size: 14px;
+}
+
+.heart {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: var(--heart-color);
+  transform: translate(-50%, -50%) rotate(45deg);
+  cursor: pointer;
+  z-index: 4;
+  box-shadow: 0 1px 6px var(--shadow-color);
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--heart-color);
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -12px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: -12px;
+}
+
+.flap > .envelope::before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.flap > .envelope > .letter {
+  bottom: 100px;
+  transform: translateX(-50%) scale(1.1);
+  transition-delay: 1s;
+}
+
+.flap > .heart {
+  transform: rotate(90deg);
+  transition-delay: 0.4s;
+}
+
+/* Contador Externo */
+/* Substitua a seção do contador externo e adicione estas regras: */
+
+/* Contador Externo */
+.contador-externo {
+  width: 90%;
+  max-width: 600px; /* Aumentei o max-width */
+  margin: 30px auto;
+  padding: 20px;
+  background: rgba(255, 182, 193, 0.3);
+  backdrop-filter: blur(5px);
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.relogio {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.tempo-box {
+  background: rgba(135, 63, 69, 0.8);
+  color: white;
+  padding: 10px 5px; /* Reduzi o padding horizontal */
+  border-radius: 10px;
+  min-width: 50px; /* Reduzi a largura mínima */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  flex: 1; /* Adicionei flex para melhor distribuição */
+  max-width: 80px; /* Limite máximo para cada caixa */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 600px) {
+  .contador-externo {
+    width: 95%;
+    padding: 15px 10px;
+  }
+  
+  .tempo-box {
+    padding: 8px 3px; /* Padding ainda menor */
+    min-width: 40px;
+  }
+  
+  .tempo-box span {
+    font-size: 1.2rem; /* Tamanho menor para números */
+  }
+  
+  .tempo-box small {
+    font-size: 0.7rem; /* Tamanho menor para labels */
+  }
+  
+  .mensagem-contador {
+    font-size: 0.9rem; /* Tamanho menor para a mensagem */
+  }
+}
+
+/* Para telas muito pequenas (menores que 400px) */
+@media (max-width: 400px) {
+  .relogio {
+    gap: 5px; /* Espaço menor entre os itens */
+  }
+  
+  .tempo-box {
+    min-width: 35px;
+    padding: 5px 2px;
+  }
+  
+  .tempo-box span {
+    font-size: 1rem;
+  }
+}  margin-top: 10px;
+  font-size: 1.1rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .envelope-wrapper > .envelope {
+    width: 300px;
+    height: 200px;
+  }
+  
+  .envelope-wrapper > .envelope::before,
+  .envelope-wrapper > .envelope::after {
+    border-top-width: 120px;
+    border-right-width: 150px;
+    border-left-width: 150px;
+  }
+  
+  .tempo-box {
+    padding: 8px 12px;
+    min-width: 50px;
+  }
+  
+  .tempo-box span {
+    font-size: 1.4rem;
+  }
+}
